@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>ScrollMagic</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 2000px; /* Para permitir scroll */
+      font-family: sans-serif;
+    }
+
+    .caja {
+      width: 100px;
+      height: 100px;
+      background-color: red;
+      margin: 100px auto;
+      transition: background-color 0.5s ease;
+    }
+
+    /* Clase que cambia el color */
+    .caja.azul {
+      background-color: blue;
+    }
+
+    #disparador {
+      margin-top: 600px;
+      height: 50px;
+      background-color: lightgray;
+      text-align: center;
+      line-height: 50px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h2 style="text-align:center;">Haz scroll hasta el disparador</h2>
+
+  <div class="caja" id="caja"></div>
+
+  <div id="disparador">Disparador</div>
+
+  <!-- ScrollMagic -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js"></script>
+
+  <script>
+    // Crear el controlador de ScrollMagic
+    const controller = new ScrollMagic.Controller();
+
+    // Crear escena que cambia clase al hacer scroll
+    const escena = new ScrollMagic.Scene({
+      triggerElement: "#disparador", // Punto de disparo
+      triggerHook: 0.9                // 0.9 = se activa cuando el trigger está al 90% del alto de la pantalla
+    })
+    .setClassToggle("#caja", "azul")  // Aplica la clase 'azul' a la caja
+    .addTo(controller);               // Añadir escena al controlador
+  </script>
+
+</body>
+</html>
